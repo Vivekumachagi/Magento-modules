@@ -1,0 +1,27 @@
+<?php
+/**
+ * var Vivek\Form\Block\Form $block 
+ */
+$autherId = $block->getCustomerById()
+?>
+<form method="post" action="<?= $block->editAuther() ?>">
+   <fieldset>
+   <div>
+            <label for="manufacturer"><?= __("author_id") ?></label>
+            <input type="text" name="author_id" id="author_name" value="<?php echo $autherId->getId(); ?>" readonly />
+        </div>
+       <div>
+            <label for="manufacturer"><?= __("author_name") ?></label>
+            <input type="text" name="author_name" id="author_name" value="<?php echo $autherId->getName(); ?>" >
+        </div>
+        <div>
+            <label for="email"><?= __("email") ?>
+                <input type="text" name="email" id="email" value="<?php echo $autherId->getEmail(); ?>"/>
+        </div>
+        <div>
+            <label for="description"><?= __("description") ?>
+                <input type="text" name="description" id="description"value="<?php echo $autherId->getDesc(); ?>" />
+        </div>
+      <input type="submit" value="<?= __("SUBMIT") ?>" />
+   </fieldset>
+</form>
