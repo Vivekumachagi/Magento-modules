@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Webkul_Grid Menu
+ *
+ * @category    Webkul
+ * @package     Webkul_Grid
+ * @author      Webkul Software Private Limited
+ *
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Vivek_Grid::manager" title="Vivek" module="Vivek_Grid" sortOrder="10" resource="Vivek_Grid::manager"/>
+        <add id="Vivek_Grid::add_row" title="sub menu" module="Vivek_Grid" sortOrder="20" parent="Vivek_Grid::manager" action="grid/grid" resource="Vivek_Grid::add_row"/>
+    </menu>
+</config>

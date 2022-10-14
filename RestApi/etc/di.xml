@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Vivek\RestApi\Api\RestApiInterface" type="Vivek\RestApi\Model\RestApi" />
+    <type name="Vivek\RestApi\Model\RestApi">
+        <arguments>
+            <argument name="fruits" xsi:type="array">
+                <item name="apple" xsi:type="string">Apple</item>
+                <item name="apple1" xsi:type="string">Green Apple</item>
+                <item name="orange" xsi:type="string">Orange</item>
+            </argument>
+        </arguments>
+    </type>
+  </config>
