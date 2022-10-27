@@ -61,7 +61,6 @@ class RestApi implements \Vivek\RestApi\Api\RestApiInterface
     public function getApiData(int $id)
     {
         var_dump($this->fruits);
-
         $objectManager = \Magento\Framework\App\ObjectManager::getInstance(); // Instance of object manager
         $resource = $objectManager->get('Magento\Framework\App\ResourceConnection');
         $connection = $resource->getConnection();
