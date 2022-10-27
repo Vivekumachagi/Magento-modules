@@ -1,0 +1,11 @@
+<h1><?php echo $this->getText(); ?></h1>
+<h2>number is <?php echo $this->number() ?></h2>
+
+<div class="field phone_number required">
+    <label class="label" for="phone_number">
+        <span><?= $block->escapeHtml(__('Phone number')) ?></span>
+    </label>
+    <div class="control">
+        <input type="text" name="phone_number" id="phone_number" value="" title="<?= $block->escapeHtmlAttr(__('Phone number')) ?>" class="input-text" data-validate="{required:true}">
+    </div>
+</div>
