@@ -11,7 +11,7 @@
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
     <router id="admin">
-        <route id="grid" frontName="grid">
+        <route id="slot" frontName="slot">
             <module name="Vivek_CodilarProject" />
         </route>
     </router>

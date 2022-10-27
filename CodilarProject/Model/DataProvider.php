@@ -9,7 +9,7 @@ class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
      * @param string $name
      * @param string $primaryFieldName
      * @param string $requestFieldName
-     * @param CollectionFactory $employeeCollectionFactory
+     * @param CollectionFactory $carsCollectionFactory
      * @param array $meta
      * @param array $data
      */
@@ -17,11 +17,11 @@ class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
         string $name,
         string $primaryFieldName,
         string $requestFieldName,
-        CollectionFactory $employeeCollectionFactory,
+        CollectionFactory $carsCollectionFactory,
         array $meta = [],
         array $data = []
     ) {
-        $this->collection = $employeeCollectionFactory->create();
+        $this->collection = $carsCollectionFactory->create();
         parent::__construct($name, $primaryFieldName, $requestFieldName, $meta, $data);
     }
 

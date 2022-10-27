@@ -18,9 +18,8 @@
     <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
         <arguments>
             <argument name="collections" xsi:type="array">
-                <item name="grid_record_grid_list_data_source" xsi:type="string">Vivek\CodilarProject\Model\ResourceModel\Cars\Cars\Collection</item>
+                <item name="slot_list_data_source" xsi:type="string">Vivek\CodilarProject\Model\ResourceModel\Cars\Cars\Collection</item>
             </argument>
         </arguments>
     </type>
-
 </config>

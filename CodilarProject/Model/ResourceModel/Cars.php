@@ -9,7 +9,7 @@ class Cars extends AbstractDb
     /**
      * @var string
      */
-    protected $_idFieldName = 'id';
+    protected $_idFieldName = 'booking_id';
     /**
      * @var \Magento\Framework\Stdlib\DateTime\DateTime
      */

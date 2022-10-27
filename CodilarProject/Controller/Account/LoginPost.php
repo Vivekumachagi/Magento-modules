@@ -43,7 +43,6 @@ class LoginPost extends \Magento\Customer\Controller\Account\LoginPost
                     );
                     $this->messageManager->addError($message);
                     $this->session->setUsername($login['username']);
-
                     $resultRedirect->setPath('customer/account/login');
                     return $resultRedirect;
 
@@ -51,7 +50,6 @@ class LoginPost extends \Magento\Customer\Controller\Account\LoginPost
                     $message = __('Invalid login or password.');
                     $this->messageManager->addError($message);
                     $this->session->setUsername($login['username']);
-
                     $resultRedirect->setPath('customer/account/login');
                     return $resultRedirect;
 
