@@ -1,0 +1,127 @@
+<?php
+/**
+ * @var Codilar\HomePage\Block\HomePage $block
+ */
+$seminarId = $block->getSeminarCategoryId();
+$seminarProductCollection = $block->getCollection();
+$seminarCollection = $seminarProductCollection->addAttributeToSelect('*');
+$seminarCollection->addCategoriesFilter(['in' => $seminarId]);
+$startDate = date('Y-m-d H:i:s', strtotime('-1 day'));
+$seminarCollection->addAttributeToFilter('seminar_start_date', array('gt' => $startDate));
+$seminarCollection->addAttributeToSort('seminar_start_date', 'ASC')->load();
+$date = $block->getDateTimeZone()->getTimeAccordingToTimeZone();
+$mediaurl = $block->getStoreManager()->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
+$symbol = $block->getDate()->getProductCurrencySymbol();
+foreach ($seminarCollection as $product) :
+    $dateEndTime = $product->getSeminarEndDate();
+    $productType = $product->getTypeInstance();
+    $isParentProduct = $productType instanceof Magento\ConfigurableProduct\Model\Product\Type\Configurable;
+    if (strtotime($dateEndTime) > strtotime($date) && $isParentProduct):?>
+        <div class="col-md-6 col-lg-6 col-xl-6 col-xxl-4 mb-5">
+            <div class="card card-bg comingSeminar">
+                <div class="card-body">
+                    <a href="<?php echo $product->getProductUrl() ?>"><h5
+                            class="mb-4 text-13 text-center font-weight-bold"><?php echo $product->getName() ?></h5>
+                    </a>
+                    <div class="row">
+                        <div class="col-4 pr-0">
+                            <img
+                                src="<?php echo $mediaurl . 'catalog/product' . $product->getSmallImage(); ?>"
+                                class="img-fluid">
+                        </div>
+                        <div class="col-8 same-heightDev">
+                            <p class="text-12 mb-3">
+                                <b><?php echo $product->getResource()->getAttribute('mgs_brand')->getFrontend()->getValue($product); ?></b>
+                            </p>
+                            <?php
+                            $productTypeInstance = $block->getConfigurable();
+                            $productAttributeOptions = $productTypeInstance->getConfigurableAttributesAsArray($product);
+                            $_product = $block->getProduct()->load($product->getId());
+                            if ($product->getTypeId() == \Magento\ConfigurableProduct\Model\Product\Type\Configurable::TYPE_CODE) :?>
+                                <?php $_childProducts = $_product->getTypeInstance()->getUsedProducts($_product);
+                                $venues = [];
+                                foreach ($_childProducts as $i => $simpleProduct) {
+                                    $venues[$simpleProduct->getId()] = $simpleProduct->getAttributeText('venue');
+                                }
+                                ?>
+                                <?php $count = 0; ?>
+                                <?php foreach (array_unique($venues) as $key => $value) : ?>
+                                    <?php $count++; ?>
+                                    <div class="sItem">
+                                        <div class="img-left mr-3">
+                                            <img src="<?php echo $mediaurl . '/images/map.png' ?>">
+                                        </div>
+                                        <p class="mb-0">
+                                            <?php if (count(array_unique($venues)) > 1) {
+                                                echo "Loc " . ($count) . " :";
+                                            } else {
+                                                echo "Loc :";
+                                            } ?>
+                                            <?php echo $value; ?></p>
+                                    </div>
+                                <?php endforeach; ?>
+                            <?php endif; ?>
+                            <?php
+                            $backEndTimeZone = $product->getResource()->getAttribute('pr_timezone')->getFrontend()->getValue($product);
+                            $seminarDate = $product->getSeminarStartDate();
+                            $seminarDateTime = $block->getDateTimeZone()->toDisplayDates($seminarDate, $backEndTimeZone);
+                            ?>
+
+                            <div class="sItem">
+                                <div class="img-left mr-3">
+                                    <img src="<?= $mediaurl . '/images/calendar.png' ?>">
+                                </div>
+                                <p class="no-pic mb-0"><?= $seminarDateTime['est']->format('d M Y, l T'); ?></p>
+                            </div>
+                            <div class="sItem">
+                                <div class="img-left mr-3">
+                                    <img src="<?= $mediaurl . '/images/calendar.png' ?>">
+                                </div>
+                                <p class="no-pic mb-0"><?= $seminarDateTime['pdt']->format('d M Y, l T'); ?></p>
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="margin-10">
+                    <div class="sem-middle">
+                        <div class="row">
+                            <div class="col-sm-12 text-center mb-1">
+                                <?php $productFilterPrice = $product->getData('filter_price'); ?>
+                                <span class="price">
+                                                    <?php
+                                                    if ($productFilterPrice > 0) {
+                                                        echo $symbol . substr($productFilterPrice, 0, strpos($productFilterPrice, '.'));
+                                                    } else {
+                                                        echo $symbol . "0";
+                                                    }
+                                                    ?>
+                                                </span>
+                            </div>
+                            <div class="col-sm-12 text-center mb-1">
+                                <span class="color-4">Onwards</span>
+                            </div>
+                        </div>
+                        <?php
+                        $seminarStartDate = $product->getResource()->getAttribute('seminar_start_date')->getFrontend()->getValue($product);
+                        $date = $block->getDateTimeZone()->getTimeAccordingToTimeZone();
+                        $earlyBird = $product->getData('early_bird');
+                        $seminarDate = $block->getDateTimeZone()->getDateTimeAccordingToTimeZone($product->getSeminarStartDate());
+                        $getOnlyDate = date('d-m-y', strtotime($earlyBird));
+                        ?>
+                        <?php if (strtotime($earlyBird) >= strtotime($date) && strtotime($earlyBird) <= strtotime($seminarDate)) : ?>
+                        <p class="text-12 color-4 text-center">Early Bird Pricing Vaild Till
+                            - <?php if ($getOnlyDate) {
+                                echo $getOnlyDate;
+                            } ?>
+                            <?php endif; ?>
+                    </div>
+                    <hr class="margin-10">
+                    <div class="text-center">
+                        <a href="<?= $product->getProductUrl() ?>">
+                            <button class="find-more-btn"><span>FIND OUT MORE</span></button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <?php endif; ?>
+<?php endforeach; ?>

@@ -1,0 +1,97 @@
+<?php
+/**
+ * @var Codilar\HomePage\Block\HomePage $block
+ */
+$categoryFactory = $block->getCategoryFactory();
+$categoryHelper = $block->getCategory();
+$categoryRepository = $block->getCategoryRepository();
+$webinarCategoryId = $block->getWebinarCategoryId();
+$category = $categoryFactory->create()->load($webinarCategoryId);
+$startDate = date('Y-m-d H:i:s', strtotime('-1 day'));
+$productCollection = $block->getCollection();
+$collection = $productCollection->addAttributeToSelect('*');
+$collection->addCategoriesFilter(['in' => $webinarCategoryId]);
+$collection->addAttributeToFilter('webinar_date', array('gt' => $startDate));
+$collection->addAttributeToSort('webinar_date', 'ASC')->load();
+$date = $block->getDateTimeZone()->getTimeAccordingToTimeZone();
+$symbol = $block->getDate()->getProductCurrencySymbol();
+$mediaurl = $block->getStoreManager()->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
+foreach ($collection as $product): ?>
+    <?php $dateEndTime = $product->getWebinarEndDate();
+    $webinarEndDate = $block->getDateTimeZone()->getDateTimeAccordingToTimeZone($dateEndTime);
+    if (strtotime($webinarEndDate) >= strtotime($date)): ?>
+        <div class="col-md-6 col-lg-6 col-xl-6 col-xxl-4 mb-5">
+            <?php $backEndTimeZone = $product->getResource()->getAttribute('pr_timezone')->getFrontend()->getValue($product);
+            $webinarDate = $product->getWebinarDate();
+            $webinarDateTime = $block->getDateTimeZone()->toDisplayDates($webinarDate, $backEndTimeZone);
+            $webinarEstZone = $block->getDateTimeZone()->getDateTimeAccordingToTimeZone($webinarDate); ?>
+            <div class="card card-bg comingSeminar">
+                <div class="card-body">
+                    <a href="<?= $product->getProductUrl(); ?>"><h5
+                            class="text-13 text-center font-weight-bold"><?= $product->getName(); ?></h5>
+                    </a>
+                    <div class="row mt-3">
+                        <div class="col-4 pr-0">
+                            <img
+                                src="<?= $mediaurl . 'catalog/product' . $product->getSmallImage(); ?>"
+                                class="img-fluid">
+                        </div>
+                        <div class="col-8">
+                            <p class="mb-1">
+                                <b><?php echo $product->getResource()->getAttribute('mgs_brand')->getFrontend()->getValue($product); ?></b>
+                            </p>
+                            <div class="same-height">
+                                <div class="d-flex align-items-center mb-2">
+                                    <img src="<?= $mediaurl . '/images/calendar.png' ?>"
+                                         class="upcomm-img pr-2">
+                                    <p class="mb-0">
+                                        <strong><?= $webinarDateTime['est']->format('d M Y, l'); ?></strong>
+                                    </p>
+                                </div>
+                                <div class="d-flex align-items-center mb-2">
+                                    <img src="<?= $mediaurl . '/images/clock.png' ?>"
+                                         class="upcomm-img pr-2">
+                                    <?php
+                                    $webinarDuration = abs(strtotime($webinarEstZone) - strtotime($webinarEndDate)) / 60;
+                                    ?>
+                                    <p class="mb-0"><?= $webinarDateTime['est']->format('h:i A') . " EST $webinarDuration  Mins" ?></p>
+                                </div>
+                                <div class="d-flex align-items-center mb-2">
+                                    <img src="<?= $mediaurl . '/images/clock.png' ?>"
+                                         class="upcomm-img pr-2">
+                                    <p class="mb-0"><?= $webinarDateTime['pdt']->format('h:i A T') . " $webinarDuration Mins" ?></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="margin-10">
+                    <div class="sem-middle">
+                        <div class="row">
+                            <div class="col-sm-12 text-center mb-1 price">
+                                <?php $productFilterPrice = $product->getData('filter_price'); ?>
+                                <span class="price">
+                                    <?php if ($productFilterPrice > 0) {
+                                        echo $symbol . substr($productFilterPrice, 0, strpos($productFilterPrice, '.'));
+                                    } else {
+                                        echo $symbol . "0";
+                                    } ?>
+                                </span>
+                            </div>
+                            <div class="col-sm-12 text-center mb-1">
+                                <span class="color-4">Onwards</span>
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="margin-10">
+                    <div class="text-center">
+                        <button class="find-btn"
+                                onclick="window.location.href='<?= $product->getProductUrl() ?>'">
+                            FIND OUT MORE
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <?php endif; ?>
+<?php endforeach; ?>
+
