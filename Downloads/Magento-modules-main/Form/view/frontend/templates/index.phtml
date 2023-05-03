@@ -1,0 +1,47 @@
+<?php
+$cars = $block->fetch();
+?>
+<form method="post" action="<?= $block->getAddCarPostUrl() ?>">
+   <fieldset>
+       <div>
+            <label for="manufacturer"><?= __("author_name") ?></label>
+            <input type="text" name="author_name" id="author_name" />
+        </div>
+        <div>
+            <label for="email"><?= __("email") ?>
+                <input type="text" name="email" id="email" />
+        </div>
+        <div>
+            <label for="description"><?= __("description") ?>
+                <input type="text" name="description" id="description" />
+        </div>
+      <input type="submit" value="<?= __("SUBMIT") ?>" />
+   </fieldset>
+</form>
+<hr />
+<?php if (count($cars) > 0): ?>
+ <table border="1">
+      <tr>
+         <th><?= __("ID") ?></th>
+         <th><?= __("NAME") ?></th>
+         <th><?= __("EMAIL") ?></th>
+         <th><?= __("DESC") ?></th>
+         <th><?= __("DELETE") ?></th>
+         <th><?= __("EDIT") ?></th>
+       
+        </tr>
+       <?php foreach ($cars as $car): ?>
+            <tr>
+               <td><?= $car->getId() ?>
+               <td><?= $car->getName() ?>
+              <td><?= $car->getEmail() ?>
+              <td><?= $car->getDesc() ?>
+              <td><a href="<?php echo $block->delete().'?id='.$car->getId(); ?>"><input type="button" name="edit" value="delete"></a></td>
+              <td><a href="<?php echo $block->edit().'?id='.$car->getId(); ?>"><input type="button" name="edit" value="edit"></a></td>
+
+           </tr>
+      <?php endforeach; ?>
+    </table>
+<?php else: ?>
+    <h1><?= __("You have no cars yet :(") ?></h1>
+<?php endif; ?>

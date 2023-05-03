@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
+     <type name="Magento\Catalog\Model\Product">
+        <plugin name="catalog_product" type="Vivek\Plugins\Plugin\Pgin"/>
+    </type>
+    <preference for="Magento\Catalog\Model\Product" type="Vivek\Plugins\Preferences\Product"/> 
+</config>
+
+
+
+ 

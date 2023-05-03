@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="grc_download_brochure_guestuser" resource="default" engine="innodb" comment="Guest User Download Brochure">
+        <column xsi:type="int" name="id" padding="11" unsigned="true" nullable="false" identity="true" comment="ID"/>
+        <column xsi:type="varchar" name="name" length="30" nullable="false" comment="Name"/>
+        <column xsi:type="varchar" name="email" length="255" nullable="false" comment="EMAIL"/>
+        <column xsi:type="int" name="phone"  nullable="false" comment="PHONE"/>
+        <column xsi:type="varchar" name="industry" length="255" nullable="false" comment="INDUSTRY"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+    </table>
+</schema>

@@ -1,0 +1,33 @@
+<?php $value = $this->getvalue();
+if($value) : ?>
+<div>
+    <h1>Please select your slot</h1>
+</div>
+<form method="post" action="<?= $block->getAddCarPostUrl() ?>">
+    <fieldset>
+        <input type="text" name="slot_name" value="" placeholder="slot to be booked on name" required>
+        <hr>
+        <input type="text" name="time_period" id="datetimepicker" value=""placeholder="select date" class="datetimepicker" required>
+        <input type="submit" value="<?= __("SUBMIT") ?>"/>
+    </fieldset>
+</form>
+
+<script>
+    require([
+        'jquery',
+        'mage/calendar'
+    ], function ($) {
+        $('#datetimepicker').datetimepicker({
+            dateFormat: 'mm/dd/yy',
+            timeFormat: 'HH',
+            changeMonth: true,
+            changeYear: true,
+            showsTime: true
+        });
+    });
+</script>
+<?php else: ?>
+<?php $this->routeToHome();?>
+<?php endif;?>
+
+

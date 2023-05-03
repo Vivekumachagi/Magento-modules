@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <block class="Vivek\Mymodule\Block\Hello" name="hello" template="Vivek_Mymodule::hello.phtml" />
+        </referenceContainer>
+        <referenceContainer name="content">
+            <block class="Vendor\CustomModule\Block\Customer\Form\CustomerAttributes" name="attributes_customer_register" template="customer_attributes.phtml" cacheable="false"/>
+        </referenceContainer>
+        <referenceContainer name="form.additional.info">
+            <block class="Magento\Framework\View\Element\Template"
+                   name="phone_number"
+                   template="Vivek_KnockOut::extra_field.phtml"/>
+        </referenceContainer>
+    </body>
+</page>
+
+
+
+
+

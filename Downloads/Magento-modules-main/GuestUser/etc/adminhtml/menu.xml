@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Backend/etc/menu.xsd">
+    <menu>
+        <add id="guest_user::core" title="Download brochure" module="Grc_GuestUser" sortOrder="90" resource="Grc_GuestUser::sample"/>
+        <add id="guest_user::test" title="Items" module="Grc_GuestUser" sortOrder="10" parent="guest_user::core" action="guest_user/items/" resource="Grc_GuestUser::items"/>
+    </menu>
+</config>

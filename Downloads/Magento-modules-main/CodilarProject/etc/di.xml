@@ -1,0 +1,25 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Vivek\CodilarProject\Api\CarsRepositoryInterface"
+                type="Vivek\CodilarProject\Model\CarsRepository"/>
+    <preference for="Vivek\CodilarProject\Api\Data\CarsInterface" type="Vivek\CodilarProject\Model\Cars"/>
+    <type name="Magento\Framework\App\Action\AbstractAction">
+        <plugin name="customer-session-data-to-context" type="Vivek\CodilarProject\Plugin\CustomerSessionContext"
+                sortOrder="15"/>
+    </type>
+    <preference for="Magento\Customer\Controller\Account\LoginPost"
+                type="Vivek\CodilarProject\Controller\Account\LoginPost"/>
+    <virtualType name="Vivek\CodilarProject\Model\ResourceModel\Cars\Cars\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">time_slot</argument>
+            <argument name="resourceModel" xsi:type="string">Vivek\CodilarProject\Model\ResourceModel\Cars</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="slot_list_data_source" xsi:type="string">Vivek\CodilarProject\Model\ResourceModel\Cars\Cars\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

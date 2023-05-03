@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    <!-- test api Group -->
+    <route url="/V1/Restapi/posts" method="POST">
+        <service class="Vivek\RestApi\Api\RestApiInterface" method="getAllPosts"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route url="/V1/Restapi/post/:id" method="POST">
+        <service class="Vivek\RestApi\Api\RestApiInterface" method="getAllPost"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route url="/V1/Restapi/getbyid/:id" method="GET">
+        <service class="Vivek\RestApi\Api\RestApiInterface" method="getApiData"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route url="/V1/Restapi/getApiData/:id" method="GET">
+        <service class="Vivek\RestApi\Api\RestApiInterface" method="getProductsById"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+</routes>
