@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="codilar" translate="label" sortOrder="10">
+            <label>codilar</label>
+        </tab>
+        <section id="upcomingWebinarToRemove" translate="label" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Webinar Catagary</label>
+            <tab>codilar</tab>
+            <resource>Grc_Corporatetraining::upcommingwebinar_config</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>General Configuration</label>
+                <field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Module Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="categories" translate="label" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1" >
+                    <label>Upcoming Webinar</label>
+                    <source_model>Amasty\Shopby\Model\Source\ChildrenCategoriesBlock\Categories</source_model>
+                    <depends>
+                        <field id="display_mode" separator=",">1,2</field>
+                    </depends>
+                </field>
+                <field id="recordedCategory" translate="label" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1" >
+                    <label>Recorded Webinar</label>
+                    <source_model>Amasty\Shopby\Model\Source\ChildrenCategoriesBlock\Categories</source_model>
+                    <depends>
+                        <field id="display_mode" separator=",">1,2</field>
+                    </depends>
+                </field>
+                <field id="webinar" translate="label" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1" >
+                    <label>Webinar</label>
+                    <source_model>Amasty\Shopby\Model\Source\ChildrenCategoriesBlock\Categories</source_model>
+                    <depends>
+                        <field id="display_mode" separator=",">1,2</field>
+                    </depends>
+                </field>
+                <field id="seminar" translate="label" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1" >
+                    <label>Seminar</label>
+                    <source_model>Amasty\Shopby\Model\Source\ChildrenCategoriesBlock\Categories</source_model>
+                    <depends>
+                        <field id="display_mode" separator=",">1,2</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="cron_frequency" translate="label" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Cron Frequency</label>
+                <field id="upcoming_cron" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Cron Frequency for upcoming webinar</label>
+                </field>
+                <field id="filter_price" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Cron Frequency for Filter Price</label>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

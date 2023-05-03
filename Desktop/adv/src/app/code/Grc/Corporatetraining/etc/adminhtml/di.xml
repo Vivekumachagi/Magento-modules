@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <virtualType name="Magento\Catalog\Ui\DataProvider\Product\Form\Modifier\Pool">
+        <arguments>
+            <argument name="modifiers" xsi:type="array">
+                <item name="seminar_start_date" xsi:type="array">
+                    <item name="class" xsi:type="string">Grc\Corporatetraining\Ui\DataProvider\Product\Form\Modifier\Datetime</item>
+                    <item name="sortOrder" xsi:type="number">100</item>
+                </item>
+            </argument>
+            <argument name="modifiers" xsi:type="array">
+                <item name="seminar_end_date" xsi:type="array">
+                    <item name="class" xsi:type="string">Grc\Corporatetraining\Ui\DataProvider\Product\Form\Modifier\Datetimetwo</item>
+                    <item name="sortOrder" xsi:type="number">100</item>
+                </item>
+            </argument>
+            <argument name="modifiers" xsi:type="array">
+                <item name="webinar_date" xsi:type="array">
+                    <item name="class" xsi:type="string">Grc\Corporatetraining\Ui\DataProvider\Product\Form\Modifier\Datetimethree</item>
+                    <item name="sortOrder" xsi:type="number">100</item>
+                </item>
+            </argument>
+            <argument name="modifiers" xsi:type="array">
+                <item name="webinar_end_date" xsi:type="array">
+                    <item name="class" xsi:type="string">Grc\Corporatetraining\Ui\DataProvider\Product\Form\Modifier\Datetimefour</item>
+                    <item name="sortOrder" xsi:type="number">100</item>
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="SY\Attachments\Model\System\Message\Advertisment">
+        <plugin name="grc_corporatetraining_advertisment_remove" type="Grc\Corporatetraining\Plugin\AdvertismentPlugin"/>
+    </type>
+</config>

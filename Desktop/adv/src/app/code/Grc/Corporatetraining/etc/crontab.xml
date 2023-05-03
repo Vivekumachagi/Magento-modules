@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
+    <group id="default">
+        <job instance="Grc\Corporatetraining\Cron\UpcomingWebinarToRemove" method="getProductCollection" name="remove_product_from_catagary_cron">
+            <config_path>upcomingWebinarToRemove/cron_frequency/upcoming_cron</config_path>
+        </job>
+        <job instance="Grc\Corporatetraining\Cron\FilterPriceUpdate" method="filterPriceUpdate" name="filter_price_update">
+            <config_path>upcomingWebinarToRemove/cron_frequency/filter_price</config_path>
+        </job>
+    </group>
+</config>

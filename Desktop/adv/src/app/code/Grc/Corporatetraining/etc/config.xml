@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <upcomingWebinarToRemove>
+            <general>
+                <enable>1</enable>
+                <recordedCategory>40</recordedCategory>
+                <categories>7</categories>
+                <webinar>4</webinar>
+                <seminar>5</seminar>
+            </general>
+        </upcomingWebinarToRemove>
+    </default>
+</config>
