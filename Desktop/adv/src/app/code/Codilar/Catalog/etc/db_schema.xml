@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="catalog_product_option" resource="default" engine="innodb" comment="option title">
+        <column xsi:type="text" name="attendee_type" nullable="true"  comment="attendee type" />
+    </table>
+</schema>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <columns name="widget_columns">
+        <column name="filter_price" component="Codilar_Catalog/js/product/recently" displayArea="description-area">
+            <settings>
+                <label translate="true"></label>
+                <bodyTmpl>Codilar_Catalog/product/recently</bodyTmpl>
+            </settings>
+        </column>
+    </columns>
+</listing>

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Catalog\Model\Config">
+        <plugin name="Vendor_ModuleName::addCustomOptions" type="Codilar\Catalog\Plugin\Model\Config"/>
+    </type>
+    <type name="Magento\Catalog\Block\Product\ProductList\Toolbar">
+        <plugin name="catalog_productlist_toolbar_plugin" type="Codilar\Catalog\Plugin\Product\ProductList\Toolbar"/>
+    </type>
+
+    <type name="Magento\Catalog\Ui\DataProvider\Product\ProductRenderCollectorComposite">
+        <arguments>
+            <argument name="productProviders" xsi:type="array">
+                <item name="filter_price" xsi:type="object">Codilar\Catalog\Ui\DataProvider\Product\Listing\Collector\Recently</item>
+            </argument>
+        </arguments>
+    </type>
+</config>
